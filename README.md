@@ -6,6 +6,8 @@
 
 Apache NiFi-based pipeline for extracting logs from Splunk, transforming them, and storing them in Apache Iceberg tables for analytics. Built and validated on Cloudera Data Platform (CDP).
 
+![image](https://github.com/rohnu/NiFi-Splunk-to-Iceberg/blob/main/Snifi.png)
+
 ---
 
 ### 🔥 Why Use This?

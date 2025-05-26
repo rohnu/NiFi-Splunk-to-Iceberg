@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template>
+    <description>NiFi Flow: Extract logs from Splunk via REST API and store in Iceberg</description>
+    <groupId>flow-nifi-splunk-iceberg</groupId>
+    <name>Splunk_to_Iceberg_Flow</name>
+    <snippet>
+        <processors>
+            <processor>
+                <name>GenerateFlowFile</name>
+                <config>
+                    <properties>
+                        <entry key="Custom Text">search=search index=main sourcetype=dummy_logs earliest=-1h latest=now&amp;exec_mode=oneshot&amp;output_mode=json</entry>
+                    </properties>
+                    <schedulingPeriod>1 min</schedulingPeriod>
+                </config>
+            </processor>
+            <processor>
+                <name>InvokeHTTP</name>
+                <config>
+                    <properties>
+                        <entry key="HTTP Method">POST</entry>
+                        <entry key="Remote URL">https://splunk-host:8089/services/search/jobs/export</entry>
+                        <entry key="Content-Type">application/x-www-form-urlencoded</entry>
+                        <entry key="SSL Context Service">StandardSSLContextService</entry>
+                        <entry key="Basic Authentication Username">admin</entry>
+                        <entry key="Basic Authentication Password">********</entry>
+                    </properties>
+                </config>
+            </processor>
+            <processor>
+                <name>SplitText</name>
+                <config>
+                    <properties>
+                        <entry key="Line Split Count">1</entry>
+                        <entry key="Remove Trailing Newlines">true</entry>
+                    </properties>
+                </config>
+            </processor>
+            <processor>
+                <name>EvaluateJsonPath</name>
+                <config>
+                    <properties>
+                        <entry key="Destination">flowfile-content</entry>
+                        <entry key="Return Type">auto-detect</entry>
+                        <entry key="JSONPath Expression">$.result</entry>
+                    </properties>
+                </config>
+            </processor>
+            <processor>
+                <name>ConvertRecord</name>
+                <config>
+                    <properties>
+                        <entry key="Record Reader">JsonTreeReader</entry>
+                        <entry key="Record Writer">CSVRecordSetWriter</entry>
+                    </properties>
+                </config>
+            </processor>
+            <processor>
+                <name>QueryRecord</name>
+                <config>
+                    <properties>
+                        <entry key="Record Reader">JsonTreeReader</entry>
+                        <entry key="Record Writer">CSVRecordSetWriter</entry>
+                        <entry key="Query">SELECT "_indextime" as indextime, "_raw" as raw, sourcetype, "_time" as timecolumn, "source" FROM flowfile</entry>
+                    </properties>
+                </config>
+            </processor>
+            <processor>
+                <name>PutIceberg</name>
+                <config>
+                    <properties>
+                        <entry key="Table Name">dummy_logs</entry>
+                        <entry key="Namespace">default</entry>
+                        <entry key="Catalog Service">HiveCatalogService</entry>
+                        <entry key="Unmatched Column Behavior">FAIL_UNMATCHED_COLUMN</entry>
+                    </properties>
+                </config>
+            </processor>
+        </processors>
+    </snippet>
+</template>

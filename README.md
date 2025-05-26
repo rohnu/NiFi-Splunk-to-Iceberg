@@ -1,4 +1,4 @@
-# NiFi-Splunk-to-Iceberg
+# SIEM - NiFi-Splunk-to-Iceberg
 
 > "This solution validates Cloudera’s native capability to replace tools like Cribl using open, flexible pipelines with NiFi + Iceberg."
 

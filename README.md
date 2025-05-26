@@ -63,6 +63,31 @@ keytool -importcert -alias splunk-ca -file rootCA.pem -keystore splunk-truststor
 
 Place the truststore in `/etc/nifi/certs` and use it in NiFi's `StandardSSLContextService`.
 
+
+# Dockerized Splunk with Custom SSL
+
+## 🔒 Purpose
+This containerized setup runs Splunk Enterprise with a mounted custom SSL certificate to enable HTTPS-secured Splunk REST API access.
+
+## 📂 Structure
+
+```
+splunk/
+├── ssl/                # Place your server.pem and cacert.pem here
+└── data/               # Persistent data for Splunk
+```
+
+## ▶️ Run Instructions
+
+1. Place `server.pem` and `cacert.pem` in `./splunk/ssl/`.
+2. Run:
+```bash
+docker-compose up -d
+```
+3. Access Splunk at: [https://localhost:8000](https://localhost:8000)
+
+- REST API over: `https://localhost:8089`
+
 ---
 
 ### 🕑 Scheduling

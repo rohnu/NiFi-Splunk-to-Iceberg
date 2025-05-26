@@ -117,6 +117,16 @@ splunk add monitor "$DUMMY_LOG" -index main -sourcetype dummy_logs -auth admin:*
 - [NiFi Python Developer Guide](https://nifi.apache.org/nifi-docs/python-developer-guide.html)
 
 ---
+### 👥 Author
+
+- Ramprasad Ohnu – Solutions Architect
+
+### 👥 Contributors
+- Mala Chikka Kempanna – Senior Solutions Architect
+- Aravind Naidu Swarna – Solutions Architect
+- Matthew Dinep – Senior Solutions Architect
+- Jason Bongard – Practice Director
+- Ian Brooks – Principal Sales Engineer
 
 
 

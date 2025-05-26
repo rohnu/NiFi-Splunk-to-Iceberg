@@ -1,5 +1,7 @@
 # NiFi-Splunk-to-Iceberg
 
+> "This solution validates Cloudera’s native capability to replace tools like Cribl using open, flexible pipelines with NiFi + Iceberg."
+
 ## 📊 A Scalable Alternative to Cribl for Splunk Data Export
 
 Apache NiFi-based pipeline for extracting logs from Splunk, transforming them, and storing them in Apache Iceberg tables for analytics. Built and validated on Cloudera Data Platform (CDP).
@@ -82,17 +84,6 @@ splunk add monitor "$DUMMY_LOG" -index main -sourcetype dummy_logs -auth admin:*
 
 ---
 
-### 👥 Authors
-
-- Ramprasad Ohnu – Solutions Architect
-- Mala Chikka Kempanna – Senior Solutions Architect
-- Aravind Naidu Swarna – Solutions Architect
-- Matthew Dinep – Senior Solutions Architect
-- Jason Bongard – Practice Director
-- Ian Brooks – Principal Sales Engineer
-
----
-
 ### 📚 References
 
 - [NiFi PutIceberg Docs](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi.processors.iceberg.PutIceberg)
@@ -102,5 +93,5 @@ splunk add monitor "$DUMMY_LOG" -index main -sourcetype dummy_logs -auth admin:*
 
 ---
 
-> "This solution validates Cloudera’s native capability to replace tools like Cribl using open, flexible pipelines with NiFi + Iceberg."
+
 

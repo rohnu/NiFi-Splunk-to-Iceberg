@@ -50,6 +50,8 @@ Apache NiFi-based pipeline for extracting logs from Splunk, transforming them, a
 6. **QueryRecord** – SQL projection & filtering
 7. **PutIceberg** – Store to Iceberg Table via Hive Catalog
 
+   https://github.com/rohnu/NiFi-Splunk-to-Iceberg/blob/main/NiFi_flow%20.png
+
 ---
 
 ### 🔐 SSL Setup

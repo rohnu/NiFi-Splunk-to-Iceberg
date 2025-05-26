@@ -1,5 +1,4 @@
 # NiFi-Splunk-to-Iceberg
-# NiFi-Splunk-to-Iceberg
 
 ## 📊 A Scalable Alternative to Cribl for Splunk Data Export
 
